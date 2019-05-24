@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Amigo.Models.travel>
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>SearchView</h2>
+
+@using (Html.BeginForm("Index", "Search", FormMethod.Get)) {
+    @Html.TextBox("dep")
+    @Html.TextBox("arr")
+    <input type="submit"  class="btn btn-default" />
+}
+
+<table class="table">
+    <tr>
+        <th>Departure</th>
+        <th>Arrival</th>
+        <th>Hour</th>
+        <th>Date</th>
+        <th>Driver</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.departure
+            </td>
+            <td>
+                @item.arrival
+            </td>
+            <td>
+                @item.hour
+            </td>
+            <td>
+                @item.date
+            </td>
+            <td>
+                @item.driver
+            </td>
+
+        </tr>
+    }
+
+</table>

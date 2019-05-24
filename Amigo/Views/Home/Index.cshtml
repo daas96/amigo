@@ -10,11 +10,12 @@
 <div class="row">
     <div class="col-md-4">
         <h2>Look for your trip</h2>
-        @Html.TextBox("search", null, new { @class = "form-control mr-sm-2 search" }) <button class="btn btn-outline-success search-button my-0" type="submit"><span class="fas fa-search"></span> </button>
+        
+        <a href="@Url.Action("Index","Search")">Book a trip</a>
     </div>
     <div class="col-md-4">
         <h2>Sign in</h2>
-       
+        
         <p><a class="btn btn-default" >Connexion</a></p>
     </div>
     <div class="col-md-4">
