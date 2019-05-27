@@ -14,10 +14,10 @@ namespace Amigo.Controllers
         Database1Entities db = new Database1Entities();
 
         // GET: /Search/Search
-        public ActionResult Index(string dep, string arr)
+        public ActionResult Index(string dep, string arr, DateTime date)
         {
 
-            return View(db.travel.Where(x=> x.departure.Equals(dep) && x.arrival.Equals(arr)).ToList());
+            return View(db.travel.Where(x=> x.departure.Equals(dep) && x.arrival.Equals(arr) && x.date.Equals(date)).ToList());
         }
     }
 }
