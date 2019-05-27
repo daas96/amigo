@@ -64,6 +64,16 @@ namespace Amigo.Controllers
                 return View ();
             }
         }
+
+
+        public ActionResult SaveTrip(Models.travel model)
+        {
+            Models.Database1Entities db = new Models.Database1Entities();
+
+            Models.travel newTravel = new Models.travel();
+
+            return View();
+        }
     }
 
 
