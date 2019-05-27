@@ -1404,6 +1404,11 @@ pre code {
   }
 }
 
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
 table {
   max-width: 100%;
   background-color: transparent;
