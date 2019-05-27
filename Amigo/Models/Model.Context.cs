@@ -26,5 +26,6 @@ namespace Amigo.Models
         }
     
         public virtual DbSet<travel> travel { get; set; }
+        public virtual DbSet<user> user { get; set; }
     }
 }

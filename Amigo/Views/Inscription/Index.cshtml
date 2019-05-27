@@ -1,8 +1,73 @@
-﻿
+﻿@model IEnumerable<Amigo.Models.user>
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.firstname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.car)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.smoke)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.animal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.luggage)
+        </th>
+        <th></th>
+    </tr>
 
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.firstname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lastname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+     
+        <td>
+            @Html.DisplayFor(modelItem => item.phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.car)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.smoke)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.animal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.luggage)
+        </td>
+       
+    </tr>
+}
+
+</table>

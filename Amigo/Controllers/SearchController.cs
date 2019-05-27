@@ -12,12 +12,11 @@ namespace Amigo.Controllers
     public class SearchController : Controller
     {
         Database1Entities db = new Database1Entities();
-
         // GET: /Search/Search
-        public ActionResult Index(string dep, string arr, DateTime date)
+        public ActionResult Index(string dep, string arr)
         {
 
-            return View(db.travel.Where(x=> x.departure.Equals(dep) && x.arrival.Equals(arr) && x.date.Equals(date)).ToList());
+            return View(db.travel.Where(x=> x.departure.Equals(dep) && x.arrival.Equals(arr) ).ToList());
         }
     }
 }

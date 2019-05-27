@@ -8,7 +8,7 @@ namespace Amigo.Controllers
 {
     public class PostController : Controller
     {
-        Database1Entities db = new Database1Entities();
+        //Database1Entities db = new Database1Entities();
 
         public ActionResult Index()
         {

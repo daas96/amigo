@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using System.Web.Services.Description;
 
 [assembly: OwinStartupAttribute(typeof(Amigo.Startup))]
 namespace Amigo
@@ -10,5 +11,9 @@ namespace Amigo
         {
             ConfigureAuth(app);
         }
+
+       
     }
+
+    
 }
