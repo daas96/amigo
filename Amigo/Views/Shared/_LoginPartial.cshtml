@@ -13,10 +13,15 @@
     </ul>
     }
 }
-else
-{
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("S’inscrire", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Se connecter", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+@if (Session["SessionID"] != null)
+{ <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Sign out", "Logout", "Inscription", routeValues: null, htmlAttributes: new { id = "logoutLink" })</li>
     </ul>
 }
+else
+{
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Sign up", "Register", "Inscription", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Sign in", "Login", "Inscription", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>
+        }

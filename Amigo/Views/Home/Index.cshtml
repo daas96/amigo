@@ -2,6 +2,11 @@
     ViewBag.Title = "Home Page";
 }
 
+@if (Session["SessionID"] != null)
+{
+    <h4>HELLO @Session["FirstName"].ToString()</h4>
+}
+
 <div class="jumbotron">
     <h1>Welcome to AMIGO !</h1>
     <p class="lead">Amigo makes traveling easier everyday</p>
@@ -11,7 +16,7 @@
     <div class="col-md-3">
         <h2>Look for your trip</h2>
         
-        <a href="@Url.Action("Index","Search")">Book a trip</a>
+        <p><a class="btn btn-default" href="@Url.Action("Index","Search")">Book a trip</a></p>
     </div>
     <div class="col-md-3">
         <h2>Post your trip</h2>
@@ -20,11 +25,11 @@
     <div class="col-md-3">
         <h2>Sign in</h2>
 
-        <p><a class="btn btn-default" >Connexion</a></p>
+        <p><a class="btn btn-default" href="@Url.Action("Login","Inscription")">Connexion</a></p>
     </div>
     <div class="col-md-3">
         <h2>Create your account</h2>
         
-        <p><a class="btn btn-default" >Sign up</a></p>
+        <p><a class="btn btn-default" href="@Url.Action("Register", "Inscription")">Sign up</a></p>
     </div>
 </div>

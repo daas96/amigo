@@ -3,8 +3,19 @@
     ViewBag.Title = "LoggedIn";
 }
 
-@if (Session["UserId"] != null)
+@if (Session["SessionID"] != null)
 {
     <h4>HELLO @Session["FirstName"].ToString()</h4>
 }
+<div class="row">
+    <div class="col-md-3">
+        <h2>Look for your trip</h2>
 
+        <p><a class="btn btn-default" href="@Url.Action("Index","Search")">Book a trip</a></p>
+    </div>
+
+    <div class="col-md-3">
+        <h2>Post your trip</h2>
+        <p><a class="btn btn-default" href="@Url.Action("Index","Post")">Post a trip</a></p>
+    </div>
+</div>

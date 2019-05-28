@@ -54,7 +54,7 @@ namespace Amigo.Controllers
         {
             using (Database1Entities db = new Database1Entities())
             {
-                var usr = db.user.Single(u => u.firstname.Equals(us.firstname) && u.password.Equals(us.password));
+                var usr = db.user.Single(u => u.email.Equals(us.email) && u.password.Equals(us.password));
                 if(usr != null) {
                     Session["SessionID"] = usr.Id.ToString();
                     Session["FirstName"] = usr.firstname.ToString();
@@ -69,7 +69,7 @@ namespace Amigo.Controllers
         }
         public ActionResult LoggedIn()
         {
-            if(Session["UserId"] != null)
+            if(Session["SessionID"] != null)
             {
                 return View();
             }
@@ -77,6 +77,14 @@ namespace Amigo.Controllers
             {
                 return RedirectToAction("Login");
             }
+        }
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            Session["SessionID"] = null;
+            return Redirect("/");
         }
     }
 }
