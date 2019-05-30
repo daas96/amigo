@@ -11,7 +11,7 @@ namespace Amigo.Controllers
 {
     public class SearchController : Controller
     {
-        Database1Entities db = new Database1Entities();
+        Database1Entities2 db = new Database1Entities2();
         // GET: /Search/Search
         public ActionResult Index(string dep, string arr)
         {

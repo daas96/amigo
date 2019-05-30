@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Amigo.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,9 +11,27 @@ namespace Amigo.Controllers
     {
         //Database1Entities db = new Database1Entities();
 
+        [HttpGet]
         public ActionResult Index()
         {
             return View ();
+        }
+
+        [HttpPost]
+        public ActionResult Index(travel model)
+        {
+            if (ModelState.IsValid)
+            {
+                using (Database1Entities2 db = new Database1Entities2())
+                {
+                    model.Id = 1;
+                    db.travel.Add(model);
+                    db.SaveChanges();
+                }
+                ModelState.Clear();
+                ViewBag.message = "Your trip from " + model.departure + " has been successfully posted !";
+            }
+            return View();
         }
 
         public ActionResult Details(int id)
@@ -66,14 +85,7 @@ namespace Amigo.Controllers
         }
 
 
-        public ActionResult SaveTrip(Models.travel model)
-        {
-            Models.Database1Entities db = new Models.Database1Entities();
-
-            Models.travel newTravel = new Models.travel();
-
-            return View();
-        }
+ 
     }
 
 

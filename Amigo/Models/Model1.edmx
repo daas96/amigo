@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Database1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'C:\USERS\ABOKHAMY\SOURCE\REPOS\AMIGO\AMIGO\APP_DATA\DATABASE1.MDF.dbo.Passengers' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="Passengers">
+          <Key>
+            <PropertyRef Name="travelId" />
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="nbBookedSeats" />
+          </Key>
+          <Property Name="travelId" Type="int" Nullable="false" />
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="nbBookedSeats" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="travel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="driver" Type="int" Nullable="false" />
+          <Property Name="departure" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="arrival" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="hour" Type="int" Nullable="false" />
+          <Property Name="smoke" Type="bit" />
+          <Property Name="animal" Type="bit" />
+          <Property Name="luggage" Type="bit" />
+          <Property Name="nbpassengers" Type="int" Nullable="false" />
+          <Property Name="nbpassengersmax" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone" Type="int" Nullable="false" />
+          <Property Name="car" Type="varchar" MaxLength="50" />
+          <Property Name="smoke" Type="bit" />
+          <Property Name="animal" Type="bit" />
+          <Property Name="luggage" Type="bit" />
+        </EntityType>
+        <Association Name="driverKey">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="travel" Type="Self.travel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="travel">
+              <PropertyRef Name="driver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="travelConstraint">
+          <End Role="travel" Type="Self.travel" Multiplicity="1" />
+          <End Role="Passengers" Type="Self.Passengers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="travel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Passengers">
+              <PropertyRef Name="travelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="userConstraint">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="Passengers" Type="Self.Passengers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Passengers">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Database1ModelStoreContainer">
+          <EntitySet Name="travel" EntityType="Self.travel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passengers" EntityType="Self.Passengers" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Passengers].[travelId] AS [travelId], 
+    [Passengers].[userId] AS [userId], 
+    [Passengers].[nbBookedSeats] AS [nbBookedSeats]
+    FROM [dbo].[Passengers] AS [Passengers]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="driverKey" Association="Self.driverKey">
+            <End Role="users" EntitySet="users" />
+            <End Role="travel" EntitySet="travel" />
+          </AssociationSet>
+          <AssociationSet Name="travelConstraint" Association="Self.travelConstraint">
+            <End Role="travel" EntitySet="travel" />
+            <End Role="Passengers" EntitySet="Passengers" />
+          </AssociationSet>
+          <AssociationSet Name="userConstraint" Association="Self.userConstraint">
+            <End Role="users" EntitySet="users" />
+            <End Role="Passengers" EntitySet="Passengers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Database1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="travel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="driver" Type="Int32" Nullable="false" />
+          <Property Name="departure" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="arrival" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="hour" Type="Int32" Nullable="false" />
+          <Property Name="smoke" Type="Boolean" />
+          <Property Name="animal" Type="Boolean" />
+          <Property Name="luggage" Type="Boolean" />
+          <Property Name="nbpassengers" Type="Int32" Nullable="false" />
+          <Property Name="nbpassengersmax" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="users" Relationship="Self.driverKey" FromRole="travel" ToRole="users" />
+          <NavigationProperty Name="Passengers" Relationship="Self.travelConstraint" FromRole="travel" ToRole="Passengers" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="Int32" Nullable="false" />
+          <Property Name="car" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="smoke" Type="Boolean" />
+          <Property Name="animal" Type="Boolean" />
+          <Property Name="luggage" Type="Boolean" />
+          <NavigationProperty Name="travel" Relationship="Self.driverKey" FromRole="users" ToRole="travel" />
+          <NavigationProperty Name="Passengers" Relationship="Self.userConstraint" FromRole="users" ToRole="Passengers" />
+        </EntityType>
+        <EntityType Name="Passengers">
+          <Key>
+            <PropertyRef Name="travelId" />
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="nbBookedSeats" />
+          </Key>
+          <Property Name="travelId" Type="Int32" Nullable="false" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="nbBookedSeats" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="travel" Relationship="Self.travelConstraint" FromRole="Passengers" ToRole="travel" />
+          <NavigationProperty Name="users" Relationship="Self.userConstraint" FromRole="Passengers" ToRole="users" />
+        </EntityType>
+        <Association Name="driverKey">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="travel" Type="Self.travel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="travel">
+              <PropertyRef Name="driver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="travelConstraint">
+          <End Role="travel" Type="Self.travel" Multiplicity="1" />
+          <End Role="Passengers" Type="Self.Passengers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="travel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Passengers">
+              <PropertyRef Name="travelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="userConstraint">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="Passengers" Type="Self.Passengers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Passengers">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Database1Entities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="travel" EntityType="Self.travel" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <EntitySet Name="Passengers" EntityType="Self.Passengers" />
+          <AssociationSet Name="driverKey" Association="Self.driverKey">
+            <End Role="users" EntitySet="users" />
+            <End Role="travel" EntitySet="travel" />
+          </AssociationSet>
+          <AssociationSet Name="travelConstraint" Association="Self.travelConstraint">
+            <End Role="travel" EntitySet="travel" />
+            <End Role="Passengers" EntitySet="Passengers" />
+          </AssociationSet>
+          <AssociationSet Name="userConstraint" Association="Self.userConstraint">
+            <End Role="users" EntitySet="users" />
+            <End Role="Passengers" EntitySet="Passengers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Database1ModelStoreContainer" CdmEntityContainer="Database1Entities2">
+          <EntitySetMapping Name="travel">
+            <EntityTypeMapping TypeName="Database1Model.travel">
+              <MappingFragment StoreEntitySet="travel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="driver" ColumnName="driver" />
+                <ScalarProperty Name="departure" ColumnName="departure" />
+                <ScalarProperty Name="arrival" ColumnName="arrival" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="hour" ColumnName="hour" />
+                <ScalarProperty Name="smoke" ColumnName="smoke" />
+                <ScalarProperty Name="animal" ColumnName="animal" />
+                <ScalarProperty Name="luggage" ColumnName="luggage" />
+                <ScalarProperty Name="nbpassengers" ColumnName="nbpassengers" />
+                <ScalarProperty Name="nbpassengersmax" ColumnName="nbpassengersmax" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="Database1Model.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="car" ColumnName="car" />
+                <ScalarProperty Name="smoke" ColumnName="smoke" />
+                <ScalarProperty Name="animal" ColumnName="animal" />
+                <ScalarProperty Name="luggage" ColumnName="luggage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passengers">
+            <EntityTypeMapping TypeName="Database1Model.Passengers">
+              <MappingFragment StoreEntitySet="Passengers">
+                <ScalarProperty Name="travelId" ColumnName="travelId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="nbBookedSeats" ColumnName="nbBookedSeats" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

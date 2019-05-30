@@ -13,10 +13,10 @@ namespace Amigo.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Database1Entities : DbContext
+    public partial class Database1Entities2 : DbContext
     {
-        public Database1Entities()
-            : base("name=Database1Entities")
+        public Database1Entities2()
+            : base("name=Database1Entities2")
         {
         }
     
@@ -26,6 +26,7 @@ namespace Amigo.Models
         }
     
         public virtual DbSet<travel> travel { get; set; }
-        public virtual DbSet<user> user { get; set; }
+        public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<Passengers> Passengers { get; set; }
     }
 }

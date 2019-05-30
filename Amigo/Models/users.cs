@@ -12,27 +12,28 @@ namespace Amigo.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class travel
+    public partial class users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public travel()
+        public users()
         {
+            this.travel = new HashSet<travel>();
             this.Passengers = new HashSet<Passengers>();
         }
     
         public int Id { get; set; }
-        public int driver { get; set; }
-        public string departure { get; set; }
-        public string arrival { get; set; }
-        public System.DateTime date { get; set; }
-        public int hour { get; set; }
+        public string firstname { get; set; }
+        public string lastname { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
+        public int phone { get; set; }
+        public string car { get; set; }
         public Nullable<bool> smoke { get; set; }
         public Nullable<bool> animal { get; set; }
         public Nullable<bool> luggage { get; set; }
-        public int nbpassengers { get; set; }
-        public int nbpassengersmax { get; set; }
     
-        public virtual users users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<travel> travel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Passengers> Passengers { get; set; }
     }

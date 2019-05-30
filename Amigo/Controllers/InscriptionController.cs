@@ -11,7 +11,7 @@ namespace Amigo.Controllers
 {
     public class InscriptionController : Controller
     {
-        Database1Entities db = new Database1Entities();
+        Database1Entities2 db = new Database1Entities2();
 
         // GET: Inscription
 
@@ -28,13 +28,13 @@ namespace Amigo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(user us)
+        public ActionResult Register(users us)
         {
             if (ModelState.IsValid)
             {
-                using(Database1Entities db= new Database1Entities())
+                using(Database1Entities2 db= new Database1Entities2())
                 {
-                    db.user.Add(us);
+                    db.users.Add(us);
                     db.SaveChanges();
                 }
 
@@ -50,11 +50,11 @@ namespace Amigo.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(user us)
+        public ActionResult Login(users us)
         {
-            using (Database1Entities db = new Database1Entities())
+            using (Database1Entities2 db = new Database1Entities2())
             {
-                var usr = db.user.Single(u => u.email.Equals(us.email) && u.password.Equals(us.password));
+                var usr = db.users.Single(u => u.email.Equals(us.email) && u.password.Equals(us.password));
                 if(usr != null) {
                     Session["SessionID"] = usr.Id.ToString();
                     Session["FirstName"] = usr.firstname.ToString();
