@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "TripPosted";
+}
+
+<h2>Post a trip</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+        @if (ViewBag.Message != null)
+        {
+            <div class="row">
+                <div class="col-md-10">
+                    @ViewBag.Message
+                </div>
+            </div>
+        }
+}
+
+

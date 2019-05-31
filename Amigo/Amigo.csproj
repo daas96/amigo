@@ -320,6 +320,9 @@
     <Content Include="Views\Inscription\Register.cshtml" />
     <Content Include="Views\Inscription\Login.cshtml" />
     <Content Include="Views\Inscription\LoggedIn.cshtml" />
+    <Content Include="Views\Post\LoginOrSignUp.cshtml" />
+    <Content Include="Views\Post\SignUp.cshtml" />
+    <Content Include="Views\Post\TripPosted.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
