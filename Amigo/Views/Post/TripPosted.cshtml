@@ -3,12 +3,12 @@
     ViewBag.Title = "TripPosted";
 }
 
-<h2>Post a trip</h2>
+<h2>Your trip has been succesfully posted</h2>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
-        @if (ViewBag.Message != null)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        if (ViewBag.Message != null)
         {
             <div class="row">
                 <div class="col-md-10">

@@ -10,44 +10,55 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-    @if (ViewBag.Message != null)
-    {
-        <div class="row">
-            <div class="col-md-10">
-                @ViewBag.Message
+        @if (ViewBag.Message != null)
+        {
+            <div class="row">
+                <div class="col-md-10">
+                    @ViewBag.Message
+                </div>
             </div>
-        </div>
-    }
+        }
 
-
-        <div class="row">
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.departure, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group">
+            <label class = "control-label col-md-2"> Departing from :</label>
+            <div class="col-md-10">
                 @Html.EditorFor(model => model.departure, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.departure, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-6">
-                <label for="origin">Destination :</label>
-                <input class="form-control" id="destination">
+        </div>
+            
+        <div class="form-group">
+            <label class="control-label col-md-2"> Arriving at :</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.arrival, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.arrival, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <label for="date">Date of departure :</label>
-                <input class="form-control" id="date">
-            </div>
-            <div class="col-md-6">
-                <label for="hour">Time of departure :</label>
-                <input class="form-control" id="hour">
+
+        <div class="form-group">
+            <label class="control-label col-md-2"> Date of departure :</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="row">
-            <div class="col-centered">
-                <label for="contribution">Contribution requested to a passenger :</label>
-                <input class="form-control" id="contribution">
-                <label>$</label>
+
+        <div class="form-group">
+            <label class="control-label col-md-2"> Time of departure :</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.hour, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.hour, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2"> Contribution requested to each passenger :</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.departure, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.departure, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="row">
             <input type="submit" value="Create" class="btn btn-default"/>
         </div>
