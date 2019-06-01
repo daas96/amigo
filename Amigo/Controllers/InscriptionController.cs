@@ -11,15 +11,11 @@ namespace Amigo.Controllers
 {
     public class InscriptionController : Controller
     {
-        Database1Entities2 db = new Database1Entities2();
+       // Database1Entities2 db = new Database1Entities2();
 
         // GET: Inscription
 
-        [HttpGet]
-        public ActionResult Index()
-        {
-            return View();
-        }
+        
 
       
         public ActionResult Register()
@@ -41,7 +37,7 @@ namespace Amigo.Controllers
                 ModelState.Clear();
                 ViewBag.Message = us.firstname + " " + us.lastname + " " + "has successfully registered";
             }
-            return View();
+            return RedirectToAction("LoggedIn");
         }
 
         //Login
@@ -86,5 +82,10 @@ namespace Amigo.Controllers
             Session["SessionID"] = null;
             return Redirect("/");
         }
+
+        
+
+       
+        
     }
 }

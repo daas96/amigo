@@ -16,6 +16,7 @@
 @if (Session["SessionID"] != null)
 { <ul class="nav navbar-nav navbar-right">
         <li>@Html.ActionLink("Sign out", "Logout", "Inscription", routeValues: null, htmlAttributes: new { id = "logoutLink" })</li>
+        <li>@Html.ActionLink("Profil", "Detail", "Profil", routeValues: null, htmlAttributes: new { id = "ProfilLink" })</li>
     </ul>
 }
 else
