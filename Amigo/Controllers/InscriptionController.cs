@@ -54,6 +54,14 @@ namespace Amigo.Controllers
                 if(usr != null) {
                     Session["SessionID"] = usr.Id.ToString();
                     Session["FirstName"] = usr.firstname.ToString();
+                    Session["LastName"] = usr.lastname.ToString();
+                    Session["Email"] = usr.email.ToString();
+                    Session["Animal"] = usr.animal.ToString();
+                    Session["Smoke"] = usr.smoke.ToString();
+                    Session["Luggage"] = usr.luggage.ToString();
+                    Session["Car"] = usr.car.ToString();
+                    Session["Phone"] = usr.phone.ToString();
+
                     return RedirectToAction("LoggedIn");
                 }
                 else
@@ -83,9 +91,19 @@ namespace Amigo.Controllers
             return Redirect("/");
         }
 
-        
+        public ActionResult Profil()
+        {
+            if (Session["SessionID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
 
-       
-        
+
+
     }
 }

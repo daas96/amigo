@@ -3,7 +3,10 @@
     ViewBag.Title = "Search";
 }
 
-<h2>SearchView</h2>
+@if (Session["SessionID"] != null)
+{
+    <h4>HELLO @Session["FirstName"].ToString() ! Make a reservation</h4>
+}
 
 @using (Html.BeginForm("Index", "Search", FormMethod.Get)) {
     @Html.TextBox("dep")

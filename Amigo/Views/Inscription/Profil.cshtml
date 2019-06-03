@@ -1,0 +1,82 @@
+﻿@model Amigo.Models.users
+@{
+    ViewBag.Title = "Profil";
+}
+
+<h2>Profil de @Session["FirstName"].ToString()</h2>
+
+<dl class="dl-horizontal">
+
+   <p> Personnal informations :</p>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.firstname)
+    </dt>
+
+    <dd>
+        @Session["FirstName"].ToString()
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.lastname)
+    </dt>
+
+    <dd>
+       @Session["LastName"].ToString()
+    </dd>
+
+    <p> Contact :</p>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.email)
+    </dt>
+
+    <dd>
+        @Session["Email"].ToString()
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.phone)
+    </dt>
+
+    <dd>
+        @Session["Phone"].ToString()
+    </dd>
+
+    <p> Vehicules :</p>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.car)
+    </dt>
+
+    <dd>
+        @Session["Car"].ToString()
+    </dd>
+
+    <p> Preferences :</p>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.smoke)
+    </dt>
+
+    <dd>
+        @Session["Smoke"].ToString()
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.animal)
+    </dt>
+
+    <dd>
+        @Session["Animal"].ToString()
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.luggage)
+    </dt>
+
+    <dd>
+        @Session["Luggage"].ToString()
+    </dd>
+
+</dl>
