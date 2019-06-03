@@ -59,8 +59,13 @@ namespace Amigo.Controllers
                     Session["Animal"] = usr.animal.ToString();
                     Session["Smoke"] = usr.smoke.ToString();
                     Session["Luggage"] = usr.luggage.ToString();
-                    Session["Car"] = usr.car.ToString();
                     Session["Phone"] = usr.phone.ToString();
+                    if (usr.car != null)
+                    {
+                        Session["Car"] = usr.car.ToString();
+                    }
+                    else Session["Car"] = null;
+                    
 
                     return RedirectToAction("LoggedIn");
                 }

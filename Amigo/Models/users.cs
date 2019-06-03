@@ -11,7 +11,8 @@ namespace Amigo.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,14 +23,35 @@ namespace Amigo.Models
         }
     
         public int Id { get; set; }
+        [Required(ErrorMessage = "First Name is required.")]
         public string firstname { get; set; }
+
+        [Required(ErrorMessage = "Last Name is required.")]
         public string lastname { get; set; }
+
+        [Required(ErrorMessage = "Email is required.")]
+        [DataType(DataType.EmailAddress)]
         public string email { get; set; }
+
+        [Required(ErrorMessage = "Password is required.")]
+        [DataType(DataType.Password)]
         public string password { get; set; }
+
+        [Compare("password",ErrorMessage = "Passwords don't match.")]
+        [DataType(DataType.Password)]
+        public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "Phone is required.")]
+        [DataType(DataType.PhoneNumber)]
         public int phone { get; set; }
         public string car { get; set; }
+        [Required(ErrorMessage = "Choose all your preferences.")]
         public Nullable<bool> smoke { get; set; }
+
+        [Required(ErrorMessage = "Choose all your preferences.")]
         public Nullable<bool> animal { get; set; }
+
+        [Required(ErrorMessage = "Choose all your preferences.")]
         public Nullable<bool> luggage { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

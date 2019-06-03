@@ -45,13 +45,15 @@
 
     <p> Vehicules :</p>
 
-    <dt>
-        @Html.DisplayNameFor(model => model.car)
-    </dt>
-
-    <dd>
-        @Session["Car"].ToString()
-    </dd>
+    @if (Session["Car"] != null)
+    {
+        <dd>
+            @Session["Car"].ToString()
+        </dd>
+    }
+    else
+    {<dd> "No car is selected" </dd> }
+    
 
     <p> Preferences :</p>
 

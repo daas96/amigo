@@ -22,14 +22,27 @@
         <h2>Post your trip</h2>
         <p><a class="btn btn-default" href="@Url.Action("Index","Post")">Post a trip</a></p>
     </div>
-    <div class="col-md-3">
+    
+    @if (Session["SessionID"] == null)
+    {
+        <div class="col-md-3">
         <h2>Sign in</h2>
-
         <p><a class="btn btn-default" href="@Url.Action("Login","Inscription")">Connexion</a></p>
     </div>
     <div class="col-md-3">
         <h2>Create your account</h2>
-        
+
         <p><a class="btn btn-default" href="@Url.Action("Register", "Inscription")">Sign up</a></p>
     </div>
+    }
+
+    else
+    {
+        <div class="col-md-3">
+            <h2>Check your profil</h2>
+
+            <p><a class="btn btn-default" href="@Url.Action("Profil", "Inscription")">Profil</a></p>
+        </div>
+    }
+
 </div>
