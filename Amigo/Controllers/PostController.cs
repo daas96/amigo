@@ -26,8 +26,7 @@ namespace Amigo.Controllers
             {
                 int driverId = -1;
                 this.trip = model;
-                this.trip.Id = 16;
-                Console.WriteLine("COUCOU" + Session["SessionID"]);
+                this.trip.Id = 15;
                 if (Session["SessionID"] != null && Int32.TryParse(Session["SessionID"].ToString(), out driverId))
                 {
                     this.trip.driver = driverId;
@@ -71,11 +70,11 @@ namespace Amigo.Controllers
 
 
         [HttpPost]
-        public ActionResult LoginOrSignUp(users user)
+        public ActionResult LoginOrSignUp(users model)
         {
             using (Database1Entities2 db = new Database1Entities2())
             {
-                var usr = db.users.Single(u => u.email.Equals(user.email) && u.password.Equals(user.password));
+                var usr = db.users.Single(u => u.email.Equals(model.email) && u.password.Equals(model.password));
                 if (usr != null)
                 {
                     Session["SessionID"] = usr.Id.ToString();
@@ -86,8 +85,8 @@ namespace Amigo.Controllers
                 {
                     ViewBag.Message = "Username or password is wrong";
                 }
-                return View();
             }
+            return View();
         }
 
         [HttpGet]
@@ -107,21 +106,19 @@ namespace Amigo.Controllers
                         db.users.Add(user);
                         db.SaveChanges();
 
-                    Session["SessionID"] = user.Id;
-                    Session["FirstName"] = user.firstname;
+                        Session["SessionID"] = user.Id;
+                        Session["FirstName"] = user.firstname;
 
-                    GetTripFromSession();
-                    if (Int32.TryParse(Session["SessionID"].ToString(), out driverId))
-                    {
-                        trip.driver = driverId;
-                        SaveTripInSession();
-                        return RedirectToAction("TripPosted");
-                    }
-                    ViewBag.Message = " Failed to Post your trip";
-                    return View();
-                }
-
-                    
+                        GetTripFromSession();
+                        if (Int32.TryParse(Session["SessionID"].ToString(), out driverId))
+                        {
+                            trip.driver = driverId;
+                            SaveTripInSession();
+                            return RedirectToAction("TripPosted");
+                        }
+                        ViewBag.Message = "Failed to Post your trip";
+                        return View();
+                    }     
             }
             return View();
         }
