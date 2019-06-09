@@ -1,6 +1,7 @@
 ﻿using Amigo.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -11,13 +12,12 @@ namespace Amigo.Controllers
 {
     public class InscriptionController : Controller
     {
-       // Database1Entities2 db = new Database1Entities2();
+       
+
+        // Database1Entities2 db = new Database1Entities2();
 
         // GET: Inscription
-
-        
-
-      
+       
         public ActionResult Register()
         {
             return View();
@@ -26,10 +26,34 @@ namespace Amigo.Controllers
         [HttpPost]
         public ActionResult Register(users us)
         {
+            List<int> ranTable= new List<int>();
+            Random r = new Random();
+            bool exist = false;
+            foreach (int i in ranTable)
+            {
+                if (!r.Next().Equals(i))
+                {
+                    exist = false;
+                }
+                else exist = true;
+            }
+
+            if(exist== false)
+            {
+                ranTable.Add(r.Next());
+                us.Id = r.Next();
+            }
+            if (exist == true) {
+                us.Id = r.Next()+1;
+            }
+
+          
+
             if (ModelState.IsValid)
             {
                 using(Database1Entities2 db= new Database1Entities2())
                 {
+                    
                     db.users.Add(us);
                     db.SaveChanges();
                 }
@@ -37,6 +61,7 @@ namespace Amigo.Controllers
                 ModelState.Clear();
                 ViewBag.Message = us.firstname + " " + us.lastname + " " + "has successfully registered";
             }
+            
             return RedirectToAction("LoggedIn");
         }
 
