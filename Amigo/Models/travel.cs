@@ -22,9 +22,10 @@ namespace Amigo.Models
     
         public int Id { get; set; }
         public int driver { get; set; }
+        public string drivername { get; set; }
         public string departure { get; set; }
         public string arrival { get; set; }
-        public System.DateTime date { get; set; }
+        public DateTime date { get; set; }
         public int hour { get; set; }
         public Nullable<bool> smoke { get; set; }
         public Nullable<bool> animal { get; set; }
