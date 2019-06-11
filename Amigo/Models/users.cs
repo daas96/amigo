@@ -23,22 +23,25 @@ namespace Amigo.Models
         }
     
         public int Id { get; set; }
-        [Required(ErrorMessage = "First Name is required.")]
+        [Required(AllowEmptyStrings=false,ErrorMessage = "First Name is required.")]
         public string firstname { get; set; }
 
-        [Required(ErrorMessage = "Last Name is required.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Last Name is required.")]
         public string lastname { get; set; }
 
-        [Required(ErrorMessage = "Email is required.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Email is required.")]
         [DataType(DataType.EmailAddress)]
+        
         public string email { get; set; }
 
         [Required(ErrorMessage = "Password is required.")]
         [DataType(DataType.Password)]
+        [MinLength(6,ErrorMessage ="6 characters required")]
         public string password { get; set; }
 
-        [Compare("password",ErrorMessage = "Passwords don't match.")]
+        
         [DataType(DataType.Password)]
+        [Compare("password", ErrorMessage = "Passwords don't match.")]
         public string ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "Phone is required.")]

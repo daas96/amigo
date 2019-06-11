@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Payment methods</h2>
+
+@if (Session["SessionID"] != null)
+{
+    <h4>HELLO @Session["FirstName"].ToString() ! Enter your credit card number to book your trip.</h4>
+
+
+
+    <p></p>
+    <p>Enter your Credit Card number : @Html.TextBox("number")</p>
+    <p>Name of the card's owner : @Html.TextBox("name")</p>
+    
+    <p><input type="submit" class="btn btn-default" /></p>
+    <p></p>
+
+}
+<p><a class="btn btn-default" href="@Url.Action("Index", "Home")">Home</a></p>

@@ -8,20 +8,24 @@
     <h4>HELLO @Session["FirstName"].ToString() ! Make a reservation</h4>
 }
 
-@using (Html.BeginForm("Index", "Search", FormMethod.Get)) {
-    @Html.TextBox("dep")
-    @Html.TextBox("arr")
-    
+@using (Html.BeginForm("Index", "Search", FormMethod.Get))
+{
+    <p></p>
+    <p>Departure location : @Html.TextBox("dep")</p>
+    <p>Arrival location : @Html.TextBox("arr")</p>
+    <p><span>Date of departure: </span><input type="date" id="d" name="d" /></p>
     <input type="submit"  class="btn btn-default" />
+    <p></p>
+
 }
 
 <table class="table">
     <tr>
         <th>Departure</th>
         <th>Arrival</th>
-        <th>Hour</th>
+       
         <th>Date</th>
-        <th>Driver</th>
+        
     </tr>
 
     @foreach (var item in Model)
@@ -33,17 +37,14 @@
             <td>
                 @item.arrival
             </td>
-            <td>
-                @item.hour
-            </td>
+            
             <td>
                 @item.date
             </td>
-            <td>
-                @item.driver
-            </td>
+            
 
         </tr>
+       
     }
 
 </table>

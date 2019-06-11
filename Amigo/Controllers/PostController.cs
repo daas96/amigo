@@ -192,7 +192,7 @@ namespace Amigo.Controllers
                 Session["TripDeparture"] = this.trip.departure;
                 Session["TripArrival"] = this.trip.arrival;
                 Session["TripDate"] = this.trip.date;
-                Session["TripHour"] = this.trip.hour;
+                
                 Session["TripMaxPassengers"] = this.trip.nbpassengersmax;
                 Session["TripDriver"] = this.trip.driver;
             }

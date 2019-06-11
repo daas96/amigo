@@ -199,6 +199,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InscriptionController.cs" />
+    <Compile Include="Controllers\PayementController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -324,6 +325,7 @@
     <Content Include="Views\Post\SignUp.cshtml" />
     <Content Include="Views\Post\TripPosted.cshtml" />
     <Content Include="Views\Inscription\Profil.cshtml" />
+    <Content Include="Views\Payement\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
