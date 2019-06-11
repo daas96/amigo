@@ -1,0 +1,17 @@
+﻿@model Amigo.Models.travel
+
+
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm())
+{
+
+}
+
+<div class ="row">
+    @Html.LabelFor(model => model.departure, htmlAttributes: new { @class = "control-label col-md-5" })
+
+    @Html.LabelFor(model => model.arrival, htmlAttributes: new { @class = "control-label col-md-5" })
+</div>
