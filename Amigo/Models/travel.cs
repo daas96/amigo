@@ -26,7 +26,6 @@ namespace Amigo.Models
         public string departure { get; set; }
         public string arrival { get; set; }
         public DateTime date { get; set; }
-        public int hour { get; set; }
         public Nullable<bool> smoke { get; set; }
         public Nullable<bool> animal { get; set; }
         public Nullable<bool> luggage { get; set; }

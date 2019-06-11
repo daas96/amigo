@@ -12,8 +12,8 @@ namespace Amigo.Controllers
 {
     public class InscriptionController : Controller
     {
-       
 
+        private List<string> mailTable = new List<string>();
         // Database1Entities2 db = new Database1Entities2();
 
         // GET: Inscription
@@ -29,6 +29,7 @@ namespace Amigo.Controllers
             List<int> ranTable= new List<int>();
             Random r = new Random();
             bool exist = false;
+            bool exist1=false;
             foreach (int i in ranTable)
             {
                 if (!r.Next().Equals(i))
@@ -54,15 +55,38 @@ namespace Amigo.Controllers
                 using(Database1Entities2 db= new Database1Entities2())
                 {
                     
-                    db.users.Add(us);
-                    db.SaveChanges();
+                    foreach (string i in mailTable)
+                    {
+                        if (!us.email.Equals(i))
+                        {
+                            exist1 = false;
+
+                        }
+                        else { exist1 = true;
+                            break;
+                        }
+                    }
+
+                    if (exist1 == false)
+                    {
+                        db.users.Add(us);
+                        db.SaveChanges();
+                        ModelState.Clear();
+                        ViewBag.Message = us.firstname + " " + us.lastname + " " + "has successfully registered";
+                        return RedirectToAction("LoggedIn");
+                    }
+                    if (exist1 == true)
+                    {
+                        ModelState.AddModelError("EMAILEXIST", "email already exists");
+                    }
+
+
                 }
 
-                ModelState.Clear();
-                ViewBag.Message = us.firstname + " " + us.lastname + " " + "has successfully registered";
+                
             }
-            
-            return RedirectToAction("LoggedIn");
+
+            return View();
         }
 
         //Login
@@ -77,6 +101,7 @@ namespace Amigo.Controllers
             {
                 var usr = db.users.Single(u => u.email.Equals(us.email) && u.password.Equals(us.password));
                 if(usr != null) {
+                    mailTable.Add(us.email);
                     Session["SessionID"] = usr.Id.ToString();
                     Session["FirstName"] = usr.firstname.ToString();
                     Session["LastName"] = usr.lastname.ToString();
