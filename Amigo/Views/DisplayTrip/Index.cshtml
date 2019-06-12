@@ -2,8 +2,9 @@
 
 
 @{
-    Layout = null;
+    ViewBag.Title = "DisplayTrip";
 }
+
 
 @using (Html.BeginForm())
 {
@@ -12,6 +13,39 @@
 
 <div class ="row">
     @Html.LabelFor(model => model.departure, htmlAttributes: new { @class = "control-label col-md-5" })
-
+    <div class="label col-md-2"> → </div>
     @Html.LabelFor(model => model.arrival, htmlAttributes: new { @class = "control-label col-md-5" })
+</div>
+
+<div class="row">
+    @Html.LabelFor(model => model.date, htmlAttributes: new { @class = "control-label col-md-12" })
+</div>
+
+<div class="row">
+    <h4>Preferences : </h4>
+</div>
+
+<div class="row">
+    <div class="col-md-8">Smoke : </div>
+    <div class="col-md-4"> @ViewBag.smoke </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">Animals : </div>
+    <div class="col-md-4"> @ViewBag.animal </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">Luggage : </div>
+    <div class="col-md-4"> @ViewBag.luggage </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6"><h4>Price :</h4></div>
+    @Html.LabelFor(model => model.pricePerPassenger, htmlAttributes: new { @class = "control-label col-md-5" })
+    <div class="col-md-1">$</div>
+</div>
+
+<div class="row">
+    <input type="submit" value="Book this trip" class="btn btn-default" />
 </div>

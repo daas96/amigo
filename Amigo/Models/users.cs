@@ -11,8 +11,7 @@ namespace Amigo.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,38 +22,14 @@ namespace Amigo.Models
         }
     
         public int Id { get; set; }
-        [Required(AllowEmptyStrings=false,ErrorMessage = "First Name is required.")]
         public string firstname { get; set; }
-
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Last Name is required.")]
         public string lastname { get; set; }
-
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Email is required.")]
-        [DataType(DataType.EmailAddress)]
-        
         public string email { get; set; }
-
-        [Required(ErrorMessage = "Password is required.")]
-        [DataType(DataType.Password)]
-        [MinLength(6,ErrorMessage ="6 characters required")]
         public string password { get; set; }
-
-        
-        [DataType(DataType.Password)]
-        [Compare("password", ErrorMessage = "Passwords don't match.")]
-        public string ConfirmPassword { get; set; }
-
-        [Required(ErrorMessage = "Phone is required.")]
-        [DataType(DataType.PhoneNumber)]
         public int phone { get; set; }
         public string car { get; set; }
-        [Required(ErrorMessage = "Choose all your preferences.")]
         public Nullable<bool> smoke { get; set; }
-
-        [Required(ErrorMessage = "Choose all your preferences.")]
         public Nullable<bool> animal { get; set; }
-
-        [Required(ErrorMessage = "Choose all your preferences.")]
         public Nullable<bool> luggage { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -13,10 +13,17 @@ namespace Amigo.Controllers
     {
         Database1Entities2 db = new Database1Entities2();
         // GET: /Search/Search
+        [HttpGet]
         public ActionResult Index(string dep, string arr)
         {
 
-            return View(db.travel.Where(x=> x.departure.Equals(dep) && x.arrival.Equals(arr) ).ToList());
+            return View(db.travel.Where(x => x.departure.Equals(dep) && x.arrival.Equals(arr)).ToList());
+        }
+
+        [HttpPost]
+        public ActionResult ShowTrip(int tripId)
+        {
+            return RedirectToAction("Index", "DisplayTrip", new { id = tripId });
         }
     }
 }

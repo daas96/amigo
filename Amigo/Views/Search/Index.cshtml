@@ -30,21 +30,22 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @item.departure
-            </td>
-            <td>
-                @item.arrival
-            </td>
-            
-            <td>
-                @item.date
-            </td>
-            
+            <tr onclick="@Url.Action("Index", "DisplayTrip")">
+                <td>
+                    @item.departure
+                </td>
+                <td>
+                    @item.arrival
+                </td>
+                <td>
+                    @item.date
+                </td>
+                <td>
+                    @Html.ActionLink("Show more", "Index", "DisplayTrip", new { id = item.Id}, null)
+                </td>
+            </tr>
 
-        </tr>
-       
     }
 
 </table>
+
