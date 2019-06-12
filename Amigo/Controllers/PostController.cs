@@ -26,7 +26,7 @@ namespace Amigo.Controllers
             {
                 int driverId = -1;
                 this.trip = model;
-                this.trip.Id = 15;
+                this.trip.Id = GenerateId();
                 if (Session["SessionID"] != null && Int32.TryParse(Session["SessionID"].ToString(), out driverId))
                 {
                     this.trip.driver = driverId;
@@ -100,7 +100,7 @@ namespace Amigo.Controllers
         {
             if (ModelState.IsValid)
             {
-                int driverId = -1;
+                int driverId = GenerateId();
                 using (Database1Entities2 db = new Database1Entities2())
                     {
                         db.users.Add(user);
@@ -128,10 +128,14 @@ namespace Amigo.Controllers
         public ActionResult TripPosted()
         {
             GetTripFromSession();
+            
             using (Database1Entities2 db = new Database1Entities2())
             {
-                db.travel.Add(trip);
-                db.SaveChanges();
+                /*if (db.travel.Find(this.trip.Id) != null)
+                {
+                    db.travel.Add(trip);
+                    db.SaveChanges();
+                }*/
                 ViewBag.Message = "Congratulations " + Session["FirstName"] + " for posting a trip from " + trip.departure + " to " + trip.arrival + "!";
                 DeleteTripInSession();
                 return View();
@@ -242,6 +246,34 @@ namespace Amigo.Controllers
             Session["TripHour"] = null;
             Session["TripMaxPassengers"] = null;
             Session["TripDriver"] = null;
+        }
+
+        public int GenerateId()
+        {
+            int id = -1;
+            List<int> ranTable = new List<int>();
+            Random r = new Random();
+            bool exist = false;
+            foreach (int i in ranTable)
+            {
+                if (!r.Next().Equals(i))
+                {
+                    exist = false;
+                }
+                else exist = true;
+            }
+
+            if (exist == false)
+            {
+                ranTable.Add(r.Next());
+                id = r.Next();
+            }
+            if (exist == true)
+            {
+                id = r.Next() + 1;
+            }
+
+            return id;
         }
 
 
