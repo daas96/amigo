@@ -206,7 +206,7 @@ namespace Amigo.Controllers
             {
                 this.trip.Id = tripId;
 
-                if (Session["TripDeparture"] != null && Session["TripArrival"] != null && Session["TripDate"] != null && Session["TripHour"] != null && Session["TripMaxPassengers"] != null && Session["TripDriver"] != null)
+                if (Session["TripDeparture"] != null && Session["TripArrival"] != null && Session["TripDate"] != null && Session["TripMaxPassengers"] != null && Session["TripDriver"] != null)
                 {
                     int tripMaxPassengers = 0;
                     int tripDriverId = -1;
@@ -218,6 +218,7 @@ namespace Amigo.Controllers
                     {
                         this.trip.nbpassengersmax = tripMaxPassengers;
                         this.trip.driver = tripDriverId;
+                        this.trip.driver = Int32.Parse(Session["SessionID"].ToString());
                     }
                     else
                     {
@@ -228,6 +229,7 @@ namespace Amigo.Controllers
                 {
                     this.trip = null;
                 }
+                
             }
         }
 
